@@ -1,6 +1,4 @@
 // src/app/api/upload-logo/route.ts
-
-// src/app/api/upload-logo/route.ts
 import { NextResponse } from 'next/server';
 import PinataClient from '@pinata/sdk';
 import { Readable } from 'stream';
@@ -85,9 +83,16 @@ export async function POST(request: Request) {
         // Return the IPFS hash (CID)
         return NextResponse.json({ ipfsHash: result.IpfsHash }, { status: 200 });
 
-    } catch (error: any) {
-        console.error("API Route: Error during upload:", error);
-        // Consider more specific error messages based on error type if possible
-        return NextResponse.json({ message: `Upload failed: ${error.message || 'Unknown error'}` }, { status: 500 });
+    
+  // With this corrected version:
+  } catch (error) { // error is unknown
+    console.error("API Route: Error during upload:", error);
+    let message = "Unknown upload error";
+    if (error instanceof Error) {
+        message = error.message;
+    } else if (typeof error === 'string') {
+        message = error;
     }
+    return NextResponse.json({ message: `Upload failed: ${message}` }, { status: 500 });
+}
 }
