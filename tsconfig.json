@@ -37,8 +37,7 @@
     ".next/types/**/*.ts",
     "build/types/**/*.ts",
     "next-env.d.ts",
-    "out/types/**/*.ts"
-, "../not/createSonicToken.ts"  ],
+    "out/types/**/*.ts" ],
   "exclude": [
     "node_modules"
   ]

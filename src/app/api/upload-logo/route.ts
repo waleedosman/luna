@@ -1,4 +1,5 @@
 // src/app/api/upload-logo/route.ts
+export const runtime = 'nodejs';
 import { NextResponse } from 'next/server';
 import PinataClient from '@pinata/sdk';
 import { Readable } from 'stream';
